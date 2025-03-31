@@ -6,10 +6,10 @@ if __name__ == '__main__':
     tg = ProjectTelegram()
     vk = ProjectVk()
 
-    def job(type, chat_id=None, group_id=None):
-        tg.send(type=type, chat_id=chat_id)
+    def job(type, chat_id=None, group_id=None, tags=None):
+        tg.send(type=type, chat_id=chat_id, tags=tags)
         if group_id is not None:
-            vk.send(type=type, group_id=group_id, image_gen=False, text_gen=False)
+            vk.send(type=type, group_id=group_id, image_gen=False, text_gen=False, tags=tags)
 
     schedule.every().day.at("19:00",'Europe/Moscow').do(job, type="pisces", chat_id='@pisces_the', group_id='229837683', tags=['#гороскоп', '#таро', '#таронамесяц', '#рыбы'])
     schedule.every().day.at("19:01",'Europe/Moscow').do(job, type="aries", chat_id='@aries_the', group_id='229837854', tags=['#гороскоп', '#таро', '#таронамесяц', '#овен'])
